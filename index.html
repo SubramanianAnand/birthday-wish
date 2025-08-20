@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Rama Laxmi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffeef8 0%, #f3e7ff 30%, #fff5f0 70%, #ffeef8 100%);
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+
+        /* Twinkling fairy lights background */
+        .fairy-lights {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .light {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        /* Decorative ribbons */
+        .ribbon {
+            position: absolute;
+            width: 200px;
+            height: 20px;
+            background: linear-gradient(45deg, #ff69b4, #ffd700);
+            border-radius: 10px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .ribbon-1 {
+            top: 10%;
+            left: 10%;
+            transform: rotate(-15deg);
+            animation-delay: 0s;
+        }
+
+        .ribbon-2 {
+            top: 20%;
+            right: 15%;
+            transform: rotate(20deg);
+            animation-delay: 1s;
+        }
+
+        .ribbon-3 {
+            bottom: 15%;
+            left: 20%;
+            transform: rotate(10deg);
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(var(--rotation, 0deg)); }
+            50% { transform: translateY(-20px) rotate(var(--rotation, 0deg)); }
+        }
+
+        /* Main title */
+        .birthday-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .happy-birthday {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #d63384;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        .name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #d63384, #ffd700, #9d4edd);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite, bounce 2s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 0 0 10px rgba(214, 51, 132, 0.3); }
+            100% { text-shadow: 2px 2px 4px rgba(0,0,0,0.1), 0 0 20px rgba(214, 51, 132, 0.6); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Image container styles */
+        .image-container {
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .image-frame {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffd700, #ff69b4, #9d4edd);
+            padding: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: gentle-rotate 1s linear infinite;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fff5f0, #ffeef8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-placeholder:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .upload-text {
+            text-align: center;
+            color: #9d4edd;
+            font-weight: 300;
+        }
+
+        .camera-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 0.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .upload-text p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        #birthdayImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        @keyframes gentle-rotate {
+            0% { transform: rotate(-30deg); }
+            100% { transform: rotate(30deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Frame decorations */
+        .frame-decoration {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        .frame-decoration-1 {
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 0s;
+        }
+
+        .frame-decoration-2 {
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+            animation-delay: 0.5s;
+        }
+
+        .frame-decoration-3 {
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 1s;
+        }
+
+        .frame-decoration-4 {
+            top: 50%;
+            left: -10px;
+            transform: translateY(-50%);
+            animation-delay: 1.5s;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+            50% { transform: scale(1.3) rotate(180deg); opacity: 1; }
+        }
+
+        /* Floral decorations */
+        .flower {
+            position: absolute;
+            font-size: 2rem;
+            animation: sway 4s ease-in-out infinite;
+        }
+
+        .flower-1 {
+            top: 25%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .flower-2 {
+            top: 30%;
+            right: 20%;
+            animation-delay: 1s;
+        }
+
+        .flower-3 {
+            bottom: 25%;
+            left: 25%;
+            animation-delay: 2s;
+        }
+
+        .flower-4 {
+            bottom: 30%;
+            right: 15%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg) translateY(0px); }
+            50% { transform: rotate(5deg) translateY(-15px); }
+        }
+
+        /* Butterflies */
+        .butterfly {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: flutter 6s ease-in-out infinite;
+        }
+
+        .butterfly-1 {
+            top: 40%;
+            left: 30%;
+            animation-delay: 0s;
+        }
+
+        .butterfly-2 {
+            top: 60%;
+            right: 35%;
+            animation-delay: 2s;
+        }
+
+        @keyframes flutter {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(5deg); }
+            50% { transform: translate(-10px, -40px) rotate(-3deg); }
+            75% { transform: translate(-30px, -20px) rotate(7deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        .confetti:nth-child(odd) {
+            background: #ff69b4;
+            border-radius: 50%;
+        }
+
+        .confetti:nth-child(even) {
+            background: #9d4edd;
+            transform: rotate(45deg);
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Birthday message */
+        .message {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            color: #6f42c1;
+            font-weight: 300;
+            max-width: 600px;
+            line-height: 1.6;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .happy-birthday {
+                font-size: 2rem;
+            }
+            
+            .name {
+                font-size: 3rem;
+            }
+            
+            .message {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .flower {
+                font-size: 1.5rem;
+            }
+            
+            .butterfly {
+                font-size: 1.2rem;
+            }
+
+            .image-frame {
+                width: 200px;
+                height: 200px;
+            }
+
+            .camera-icon {
+                font-size: 2rem;
+            }
+
+            .upload-text p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fairy lights background -->
+    <div class="fairy-lights" id="fairyLights"></div>
+
+    <!-- Decorative ribbons -->
+    <div class="ribbon ribbon-1" style="--rotation: -15deg;"></div>
+    <div class="ribbon ribbon-2" style="--rotation: 20deg;"></div>
+    <div class="ribbon ribbon-3" style="--rotation: 10deg;"></div>
+
+    <!-- Floral decorations -->
+    <div class="flower flower-1">🌸</div>
+    <div class="flower flower-2">🌺</div>
+    <div class="flower flower-3">🌷</div>
+    <div class="flower flower-4">🌹</div>
+
+    <!-- Butterflies -->
+    <div class="butterfly butterfly-1">🦋</div>
+    <div class="butterfly butterfly-2">🦋</div>
+
+    <!-- Main container -->
+    <div class="container">
+        <div class="birthday-title">
+            <h1 class="happy-birthday">Happy Birthday</h1>
+            <h2 class="name">Rama Laxmi</h2>
+        </div>
+        
+        <!-- Image container -->
+        <div class="image-container">
+            <div class="image-frame">
+                <div class="image-placeholder" onclick="document.getElementById('imageInput').click()">
+                    <div class="upload-text">
+                        <span class="camera-icon">📷</span>
+                        <p>Click to add Rama Laxmi's photo</p>
+                    </div>
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                    <img id="birthdayImage" style="display: none;">
+                </div>
+                <div class="frame-decoration frame-decoration-1">✨</div>
+                <div class="frame-decoration frame-decoration-2">🌟</div>
+                <div class="frame-decoration frame-decoration-3">💖</div>
+                <div class="frame-decoration frame-decoration-4">✨</div>
+            </div>
+        </div>
+        
+        <div class="message">
+            May your special day be filled with endless joy, beautiful moments, and all the love your heart can hold. Here's to another year of wonderful adventures and cherished memories! ✨
+        </div>
+    </div>
+
+    <!-- Confetti elements -->
+    <div id="confettiContainer"></div>
+
+    <script>
+        // Create fairy lights
+        function createFairyLights() {
+            const container = document.getElementById('fairyLights');
+            const numberOfLights = 50;
+            
+            for (let i = 0; i < numberOfLights; i++) {
+                const light = document.createElement('div');
+                light.className = 'light';
+                light.style.left = Math.random() * 100 + '%';
+                light.style.top = Math.random() * 100 + '%';
+                light.style.animationDelay = Math.random() * 2 + 's';
+                light.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                container.appendChild(light);
+            }
+        }
+
+        // Create falling confetti
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            
+            function addConfetti() {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                container.appendChild(confetti);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.parentNode.removeChild(confetti);
+                    }
+                }, 5000);
+            }
+            
+            // Add confetti periodically
+            setInterval(addConfetti, 300);
+        }
+
+        // Handle image upload
+        document.getElementById('imageInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('birthdayImage');
+                    const placeholder = document.querySelector('.upload-text');
+                    
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                    placeholder.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            createFairyLights();
+            createConfetti();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'971968f6460d7ef8',t:'MTc1NTYwMzk4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
